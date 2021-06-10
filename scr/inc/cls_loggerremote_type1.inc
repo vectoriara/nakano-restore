@@ -1,0 +1,278 @@
+<?
+//============================================================//
+//	外部取込ロガークラス																			//
+//------------------------------------------------------------//
+//	処理概要																									//
+//	　高岡（氷見）用																					//
+//------------------------------------------------------------//
+//	変更履歴																									//
+//		2013/10/01	N.ARAI																			//
+//		・新規作成																							//
+//============================================================//
+class LoggerREMOTE_TYPE1 extends LoggerREMOTE_TYPE0
+{
+	//変数宣言
+	var $varsion	= "1.0";
+	var $update		= "2013.10.01";
+	var $memo			= "";
+	var $id				= "REMOTE_TYPE1";
+
+	//帳票毎でこのロガーが出力できる項目を定義
+	var $OutField = array(
+		"000" => array(	"avg_ws",
+			"avg_wd",
+			"max_ws",
+			"max_wd",
+			"temp",
+			"humid1",
+			"humid2",
+			"press1",
+			"press2",
+			"rain_10min",
+			"rain_hour",
+			"rain_day",
+			"move_rain_10min",
+			"move_rain_hour",
+			"move_rain_day",
+			"rain_1min",
+			"weather",
+			"rain_rui",
+			"snow_level",
+			"move_snow_10min",
+			"move_snow_hour"
+		),
+		"100" => array(	"avg_ws",
+			"avg_wd",
+			"max_ws",
+			"max_wd",
+			"temp",
+			"humid1",
+			"humid2",
+			"press1",
+			"press2",
+			"rain_10min",
+			"rain_hour",
+			"rain_day",
+			"snow_level",
+			"move_snow_10min",
+			"move_snow_hour"
+		),
+		"200" => array(	"avg_ws",
+			"avg_wd",
+			"max_ws",
+			"max_wd",
+			"temp",
+			"humid1",
+			"humid2",
+			"press1",
+			"press2",
+			"max_rain_10min",
+			"rain_hour",
+			"rain_day",
+			"weather",
+			"snow_level",
+			"move_snow_hour"
+		),
+		"300" => array(	"avg_ws",
+			"avg_wd",
+			"max_ws",
+			"max_wd",
+			"avg_temp",
+			"max_temp",
+			"min_temp",
+			"avg_humid1",
+			"max_humid1",
+			"min_humid1",
+			"humid2",
+			"press1",
+			"avg_press1",
+			"max_press1",
+			"min_press1",
+			"press2",
+			"avg_press2",
+			"max_press2",
+			"min_press2",
+			"max_rain_10min",
+			"max_rain_hour",
+			"rain_day",
+			"weather1",
+			"weather2",
+			"weather3",
+			"snow_level",
+			"snow_day"
+		),
+		"400" => array("avg_ws",
+			"avg_wd",
+			"max_ws",
+			"max_wd",
+			"avg_temp",
+			"max_temp",
+			"min_temp",
+			"avg_humid1",
+			"max_humid1",
+			"min_humid1",
+			"humid2",
+			"avg_humid2",
+			"max_humid2",
+			"min_humid2",
+			"press1",
+			"avg_press1",
+			"max_press1",
+			"min_press1",
+			"press2",
+			"avg_press2",
+			"max_press2",
+			"min_press2",
+			"max_rain_10min",
+			"max_rain_hour",
+			"max_rain_day",
+			"rain_month",
+			"snow_level",
+			"snow_month"
+		)
+	);
+
+	var $OutFieldIdx = array(
+		"100" => array(
+			"avg_ws"					=> 1,
+			"avg_wd"				 	=> 2,
+			"max_ws"					=> 3,
+			"max_wd"					=> 4,
+			"temp"						=> 5,
+			"humid1"					=> 6,
+			"humid2"					=> 7,
+			"press1"					=> 8,
+			"press2"					=> 9,
+			"rain_10min"			=> 10,
+			"rain_hour"				=> 11,
+			"rain_day"				=> 12,
+			"snow_level"			=> 13,
+			"move_snow_10min"	=> 14,
+			"move_snow_hour"	=> 15
+		),
+		"200" => array(
+			"avg_ws"					=> 1,
+			"avg_wd"		 			=> 2,
+			"max_ws"					=> 3,
+			"max_wd"					=> 4,
+			"temp"						=> 5,
+			"humid1"					=> 6,
+			"humid2"					=> 7,
+			"press1"					=> 8,
+			"press2"					=> 9,
+			"max_rain_10min"	=> 10,
+			"rain_hour"				=> 11,
+			"rain_day"				=> 12,
+			"snow_level"			=> 13,
+			"move_snow_hour"	=> 14,
+			"weather"					=> 15
+		),
+		"300" => array(
+			"avg_ws"					=> 1,
+			"avg_wd"		 			=> 2,
+			"max_ws"					=> 3,
+			"max_wd"					=> 4,
+			"avg_temp"				=> 5,
+			"max_temp"				=> 6,
+			"min_temp"				=> 7,
+			"avg_humid1"			=> 8,
+			"max_humid1"			=> 9,
+			"min_humid1"			=> 10,
+			"humid2"					=> 11,
+			"press1"					=> 12,
+			"press2"					=> 13,
+			"max_rain_10min"	=> 14,
+			"max_rain_hour"		=> 15,
+			"rain_day"				=> 16,
+			"snow_level"			=> 17,
+			"snow_day"				=> 18,
+			"weather1"				=> 19,
+			"weather2"				=> 20,
+			"weather3"				=> 21
+		),
+		"400" => array(
+			"avg_ws"					=> 1,
+			"avg_wd"		 			=> 2,
+			"max_ws"					=> 3,
+			"max_wd"					=> 4,
+			"avg_temp"				=> 5,
+			"max_temp"				=> 6,
+			"min_temp"				=> 7,
+			"avg_humid1"			=> 8,
+			"max_humid1"			=> 9,
+			"min_humid1"			=> 10,
+			"humid2"					=> 11,
+			"press1"					=> 12,
+			"press2"					=> 13,
+			"max_rain_10min"	=> 14,
+			"max_rain_hour"		=> 15,
+			"max_rain_day"		=> 16,
+			"rain_month"			=> 17,
+			"snow_level"			=> 18,
+			"snow_month"			=> 19
+		)
+	);
+
+	var $OutSumFieldIdx = array(
+		"200" => array(
+			"avg_ws"					=> array(40,50,55),
+			"avg_wd"					=> array(40,50),
+			"max_ws"					=> array(50,55),
+			"max_wd"					=> array(50),
+			"temp"						=> array(40,50,55,60,65),
+			"humid1"					=> array(40,50,55,60,65),
+			"humid2"					=> array(40),
+			"press1"					=> array(40,50,55,60,65),
+			"press2"					=> array(40,50,55,60,65),
+			"max_rain_10min"	=> array(50,55),
+			"rain_hour"				=> array(50,55),
+			"rain_day"				=> array(70),
+			"snow_level"			=> array(50,55),
+			"move_snow_hour"	=> array(50,55,70)
+		),
+		"300" => array(
+			"avg_ws"					=> array(40,50,55),
+			"avg_wd"		 			=> array(40,50),
+			"max_ws"					=> array(50,55),
+			"max_wd"					=> array(50),
+			"avg_temp"				=> array(40),
+			"max_temp"				=> array(50,55,80),
+			"min_temp"				=> array(60,65,80),
+			"avg_humid1"			=> array(40),
+			"max_humid1"			=> array(50,55),
+			"min_humid1"			=> array(60,65),
+			"humid2"					=> array(40,50,55,60,65),
+			"press1"					=> array(40,50,55,60,65),
+			"press2"					=> array(40,50,55,60,65),
+			"max_rain_10min"	=> array(50,55),
+			"max_rain_hour"		=> array(50,55),
+			"rain_day"				=> array(50,55,70,80),
+			"snow_level"			=> array(50,55),
+			"snow_day"				=> array(50,55,70)
+		),
+		"400" => array(
+			"avg_ws"					=> array(40,50,55),
+			"avg_wd"		 			=> array(40,50),
+			"max_ws"					=> array(50,55),
+			"max_wd"					=> array(50),
+			"avg_temp"				=> array(40),
+			"max_temp"				=> array(50,55,80),
+			"min_temp"				=> array(60,65,80),
+			"avg_humid1"			=> array(40),
+			"max_humid1"			=> array(50,55),
+			"min_humid1"			=> array(60,65),
+			"humid2"					=> array(40,50,55,60,65),
+			"press1"					=> array(40,50,55,60,65),
+			"press2"					=> array(40,50,55,60,65),
+			"max_rain_10min"	=> array(50,55),
+			"max_rain_hour"		=> array(50,55),
+			"max_rain_day"		=> array(50,55),
+			"rain_month"			=> array(50,55,70,80),
+			"snow_level"			=> array(50,55),
+			"snow_month"			=> array(50,55,70)
+		)
+
+	);
+
+}
+?>
